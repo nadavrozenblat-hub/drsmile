@@ -460,6 +460,59 @@
     .pillar-card h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
     .pillar-card p  { font-size: 15px; line-height: 1.7; color: #666; }
 
+    /* ── GALLERY ── */
+    .gallery-section {
+      padding: 100px 60px;
+      background: var(--light-bg);
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,45,111,0.3) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover::after { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .gallery-section { padding: 70px 24px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    }
+
     /* ── QUOTE BANNER ── */
     .quote-banner {
       background: linear-gradient(135deg, var(--turquoise) 0%, var(--cyan) 100%);
@@ -993,6 +1046,29 @@
   </div>
 </section>
 
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header reveal">
+    <span class="section-tag" data-key="gallery-tag">גלריה</span>
+    <h2 class="section-title" data-key="gallery-title">מהשטח</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal"><img src="A%20(1).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(2).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(3).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(4).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(5).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(6).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(7).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(8).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(9).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(10).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(11).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(12).jpg" alt="פעילות Dr. Smile"></div>
+    <div class="gallery-item reveal"><img src="A%20(13).jpg" alt="פעילות Dr. Smile"></div>
+  </div>
+</section>
+
 <!-- QUOTE BANNER -->
 <div class="quote-banner">
   <blockquote class="reveal" data-key="quote-text">
@@ -1119,6 +1195,8 @@
       'stat1-label': 'גלידות הוגשו',
       'stat2-label': 'קהילות שותפות',
       'stat4-label': 'שנים של פעילות',
+      'gallery-tag': 'גלריה',
+      'gallery-title': 'מהשטח',
       'mission-tag': 'הרעיון',
       'mission-title': 'גלידה אחת. רגע אחד. משהו שמשתנה.',
       'mission-body': 'אנחנו חיים בתוך עולם עמוס ומהיר. לפעמים, בתוך כל הרעש, קורה משהו פשוט: מישהו מקבל גלידה.<br><br>ולרגע אחד, הכל עוצר. הגוף נח. משהו מתרכך.<br><br>החיוך עולה, ואנחנו חוזרים להיות שוב ילדים.',
@@ -1161,6 +1239,8 @@
       'stat1-label': 'Ice Creams Served',
       'stat2-label': 'Partner Communities',
       'stat4-label': 'Years of Activity',
+      'gallery-tag': 'Gallery',
+      'gallery-title': 'From the Field',
       'mission-tag': 'The Idea',
       'mission-title': 'One Ice Cream. One Moment. Something Shifts.',
       'mission-body':  'In a world that moves too fast, Dr. Smile creates moments to breathe. A single scoop of ice cream isn\'t just a treat — it\'s an invitation to slow down, smile, and remember what truly matters.<br><br>We work with organizations, communities, and companies to weave genuine moments of joy into the fabric of busy everyday life.',
