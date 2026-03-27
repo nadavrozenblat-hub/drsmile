@@ -104,6 +104,64 @@
       color: var(--white);
     }
 
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--navy);
+      border-radius: 4px;
+      transition: all 0.25s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(30,45,111,0.08);
+      z-index: 99;
+      padding: 20px 24px 28px;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(30,45,111,0.08);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .mobile-menu a:nth-child(1) { background: var(--cyan);    color: var(--navy); }
+    .mobile-menu a:nth-child(2) { background: var(--magenta); color: var(--white); }
+    .mobile-menu a:nth-child(3) { background: #F5A623;        color: var(--white); }
+    .mobile-menu a:nth-child(4) { background: var(--navy);    color: var(--white); }
+    .mobile-menu a:hover { opacity: 0.8; }
+
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
@@ -782,6 +840,7 @@
     @media (max-width: 768px) {
       nav { padding: 14px 24px; }
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       .stats-strip { gap: 40px; padding: 48px 24px; }
       .founder-section { padding: 80px 24px; }
       .founder-bio { grid-template-columns: 1fr; gap: 40px; }
@@ -817,8 +876,21 @@
     <li><a href="#founder" data-key="nav-about">הסיפור</a></li>
     <li><a href="#contact" class="nav-cta" data-key="nav-contact">רוצים לחייך?</a></li>
   </ul>
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="תפריט">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#idea" data-key="nav-idea" onclick="closeMobileMenu()">הרעיון</a>
+  <a href="#what-we-do" data-key="nav-what" onclick="closeMobileMenu()">מה אנחנו עושים</a>
+  <a href="#founder" data-key="nav-about" onclick="closeMobileMenu()">הסיפור</a>
+  <a href="#contact" data-key="nav-contact" onclick="closeMobileMenu()">רוצים לחייך?</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -1189,6 +1261,18 @@
 
   const strip = document.querySelector('.stats-strip');
   if (strip) statsObserver.observe(strip);
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
 
   function scrollPartners(dir) {
     const track = document.getElementById('partnersTrack');
